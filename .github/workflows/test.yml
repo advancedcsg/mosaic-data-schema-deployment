@@ -8,7 +8,7 @@ on:
 
 jobs:
   # unit tests
-  units:
+  Test App Deployment:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2

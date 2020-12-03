@@ -9,13 +9,14 @@ async function run () {
     if (existsSync(fileLocation)) {
       const jsonStr = readFileSync(fileLocation)
       const jsonObj = JSON.parse(jsonStr)
+      info(`File Parsing Success : ${fileLocation}`)
+      info(`Initiating deployment for : ${fileLocation}`)
       const { statusCode, response } = await deploy(jsonObj)
       if (statusCode !== 200) {
         setFailed(`Execution failed with error : ${response}`)
       }
-      info('Deployment Done for app')
-      console.log('%j', response)
-      info(response)
+      info('Deployment Done for app successfully')
+      info(JSON.stringify(response))
     }
     debug('Ending Execution : ', (new Date()).toTimeString())
   } catch (error) {
