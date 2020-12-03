@@ -14,6 +14,7 @@ async function run () {
         setFailed(`Execution failed with error : ${response}`)
       }
       info('Deployment Done for app')
+      console.log('%j', response)
       info(response)
     }
     debug('Ending Execution : ', (new Date()).toTimeString())
