@@ -13,6 +13,8 @@ async function run () {
       if (statusCode !== 200) {
         setFailed(`Execution failed with error : ${response}`)
       }
+      info('Deployment Done for app')
+      info(response)
     }
     debug('Ending Execution : ', (new Date()).toTimeString())
   } catch (error) {
