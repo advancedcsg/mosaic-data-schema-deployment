@@ -7,7 +7,7 @@ require('./sourcemap-register.js');module.exports =
 
 const fetch = __webpack_require__(467)
 const deploy = async (schema) => {
-  const url = 'https://data.svc.oneadvanced.com/control/v1/apps/deploy' // MD deployment url
+  const url = 'https://data.oneadvanced.io/control/v1/apps/deploy' // 'https://data.svc.oneadvanced.com/control/v1/apps/deploy' // MD deployment url
   const res = await fetch(url, {
     method: 'post',
     body: JSON.stringify(schema),
@@ -44,6 +44,7 @@ async function run () {
         setFailed(`Execution failed with error : ${response}`)
       }
       info('Deployment Done for app')
+      console.log('%j', response)
       info(response)
     }
     debug('Ending Execution : ', (new Date()).toTimeString())
