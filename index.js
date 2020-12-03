@@ -1,21 +1,23 @@
-const core = require('@actions/core');
-const wait = require('./wait');
-
-
-// most @actions toolkit packages have async methods
-async function run() {
+const { info, debug, setFailed, getInput } = require('@actions/core')
+const deploy = require('./deploy')
+const { existsSync, readFileSync } = require('fs')
+async function run () {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
-
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
-
-    core.setOutput('time', new Date().toTimeString());
+    const fileLocation = getInput('file')
+    info(`Search for file ${fileLocation}`)
+    debug('Starting Execution : ', (new Date()).toTimeString())
+    if (existsSync(fileLocation)) {
+      const jsonStr = readFileSync(fileLocation)
+      const jsonObj = JSON.parse(jsonStr)
+      const { statusCode, response } = await deploy(jsonObj)
+      if (statusCode !== 200) {
+        setFailed(`Execution failed with error : ${response}`)
+      }
+    }
+    debug('Ending Execution : ', (new Date()).toTimeString())
   } catch (error) {
-    core.setFailed(error.message);
+    setFailed(error.message)
   }
 }
 
-run();
+run()

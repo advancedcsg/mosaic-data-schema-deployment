@@ -1,0 +1,35 @@
+{
+  "$schema": "https://data.svc.oneadvanced.com/schema.json",
+  "apps": [
+    {
+      "appName": "md-deployment-test",
+      "appOwners": [
+        {
+          "name": "Jaimin Patel",
+          "email": "jaimin.patel@oneadvanced.com"
+        }
+      ],
+      "tables": [
+        {
+          "tableName": "mdtables",
+          "tableMultiFaceted": { "enabled": false },
+          "tableSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "_id": { "type": "string", "format": "uuid" },
+              "testTableName": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 30,
+                "pattern": "^[a-z][a-z0-9]+(\\-[a-z][a-z0-9]*)*$"
+              },
+              "active": { "type": "boolean" }
+            },
+            "required": ["_id", "active"]
+          }
+        }
+      ]
+    }
+  ]
+}
