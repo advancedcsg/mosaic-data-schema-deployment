@@ -5,6 +5,9 @@ inputs:
     description: 'Mosaic Data schema file location'
     required: true
     default: 'mosaic-data.json'
+  api-key: 
+    description: 'Mosaic Data Control Plane API key'
+    required: true
 runs:
   using: 'node12'
   main: 'dist/index.js'

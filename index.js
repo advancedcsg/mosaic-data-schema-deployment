@@ -4,6 +4,7 @@ const { existsSync, readFileSync } = require('fs')
 async function run () {
   try {
     const fileLocation = getInput('file')
+    const apiKey = getInput('api-key')
     info(`Search for file ${fileLocation}`)
     debug('Starting Execution : ', (new Date()).toTimeString())
     if (existsSync(fileLocation)) {
@@ -11,7 +12,7 @@ async function run () {
       const jsonObj = JSON.parse(jsonStr)
       info(`File Parsing Success : ${fileLocation}`)
       info(`Initiating deployment for : ${fileLocation}`)
-      const { statusCode, response } = await deploy(jsonObj)
+      const { statusCode, response } = await deploy(jsonObj, apiKey)
       if (statusCode !== 200) {
         setFailed(`Execution failed with error : ${response}`)
       }
