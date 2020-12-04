@@ -18,3 +18,4 @@ jobs:
     - uses: ./
       with:
         file: './mosaic-data/schema.json'
+        api-key: ${{ secrets.MD_API_KEY }}
