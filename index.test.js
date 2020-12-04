@@ -1,7 +1,7 @@
 const deploy = require('./deploy')
 const { readFileSync } = require('fs')
 
-test('wait 500 ms', async () => {
+test('Test Schema Deployment', async () => {
   const jsonStr = readFileSync('./mosaic-data/schema.json')
   const jsonObj = JSON.parse(jsonStr)
   const { statusCode } = await deploy(jsonObj)
