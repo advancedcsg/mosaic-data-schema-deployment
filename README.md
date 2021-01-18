@@ -9,7 +9,7 @@
 You can now consume the action by referencing the v1 branch
 
 ```yaml
-uses: advancedcsg/Mosaic-Data-Schema-Deployment@v1
+uses: advancedcsg/Mosaic-Data-Schema-Deployment@v1.1
 with:
   file: './mosaic-data/schema.json'
 ```
