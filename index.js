@@ -14,7 +14,7 @@ async function run () {
       info(`Initiating deployment for : ${fileLocation}`)
       const { statusCode, response } = await deploy(jsonObj, apiKey, info)
       if (statusCode !== 200) {
-        setFailed(`Execution failed with error : ${response}`)
+        setFailed(`Execution failed with error : ${JSON.stringify(response)}`)
       }
       info('Deployment Done for app successfully')
       info(JSON.stringify(response))
